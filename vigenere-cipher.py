@@ -4,6 +4,7 @@
 #	   Rebecca Grantham, Andrew Maurice)
 # Class: CSC 442
 # Date: 3-29-2019
+# Github Repo: https://github.com/cyberstorm-team-5/P2-Vigenere-Cipher-Team-Chinese
 # Description: Program 2: Vigenere Cipher
 #              The Python code will read either a plaintext or
 #              ciphertext from stdin and send the generated
