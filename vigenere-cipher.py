@@ -56,7 +56,24 @@ def encrypt(string, key):
 
 #take in key with ciphertext to decrypt the message
 def decrypt(string, key):
-	return "decrypt " + string + " " + key
+        key = cleanKey(key)
+        nonAlph = 0
+        plain = []
+        for i in range(len(string)):
+                ###encryption algorithim, if char is not in alph array
+                #print (not (string[i] in alph))
+                if(not (string[i] in alph)):
+                        plain.append([string[i]])
+                        nonAlph += 1
+                        
+                else:
+                        
+                        index = ((26 + alph.index(string[i]) - alph.index(key[((i-nonAlph) % len(key))])) % 26)
+                        if(string[i].isupper()):
+                                index += 26
+                        plain.append(index)
+        print (newString(plain))
+
 
 
 
@@ -70,7 +87,7 @@ if(sys.argv[1] == "-d"):
 	#process all inputs from stdin as ciphertext
 	####need to add ability to loop until interrupt
 	text = sys.stdin.readline().split('\n')
-	print(decrypt(text[0], sys.argv[2]))
+	decrypt(text[0], sys.argv[2])
 
 elif(sys.argv[1] == "-e"):
 	#process all inputs from stdin as plaintext
