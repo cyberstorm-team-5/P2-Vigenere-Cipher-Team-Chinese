@@ -116,7 +116,7 @@ def decrypt(string, key):
 
 #confirm proper usage of program
 if(len(sys.argv) < 3):
-	print("Usage: ./vigener-cipher.py -[d or e] KEY")
+	print("Usage: ./vigener-cipher -[d or e] KEY")
 	exit()
 
 #determine mode
@@ -140,4 +140,4 @@ elif(sys.argv[1] == "-e"):
 
 #report improper usage
 else:
-	print("Usage: ./vigener-cipher.py -[d or e] KEY")
+	print("Usage: ./vigener-cipher -[d or e] KEY")
