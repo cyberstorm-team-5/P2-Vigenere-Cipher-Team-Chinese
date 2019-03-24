@@ -16,9 +16,11 @@
 
 import sys
 from array import *
+import string
 ###############################################################
-alph = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",\
-        "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+
+#string of all lowercase and uppercase letters (in that order)
+alph = string.ascii_letters
 
 #take an array of numbers (and non-alphabet symbols) to convert to
 #the new text (either plain or cipher)
