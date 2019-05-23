@@ -25,6 +25,7 @@ import re
 alph = string.ascii_letters
 
 
+
 #take an array of numbers (and non-alphabet symbols) to convert to
 #the new text (either plain or cipher)
 def newText(code):
