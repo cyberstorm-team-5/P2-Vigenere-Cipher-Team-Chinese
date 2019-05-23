@@ -16,9 +16,12 @@
 import sys
 from array import *
 import string
+import re
 ###############################################################
 
-#string of all lowercase and uppercase letters (in that order)
+#array of all lowercase and uppercase letters (in that order)
+#TO USE CUSTOM: HAVE ALPH BE THE ARRAY WITH THE DESIRED VALUES IN THE DESIRED ORDER,
+#THEN CONVERT THAT ARRAY TO A STRING (or just use string in first place like shown)
 alph = string.ascii_letters
 
 
@@ -49,6 +52,8 @@ def cleanKey(key):
         return key
 
 
+
+###############ENCRYPT NOT ADJUSTED##################
 #take in key with the plaintext to encrypt the message
 def encrypt(string, key):
 
@@ -94,11 +99,38 @@ def encrypt(string, key):
 #take in key with ciphertext to decrypt the message
 def decrypt(string, key):
 
-        #same purpose as in encryption
+        #SHOW HOW MANY NON ALPHABETIC (WHERE ALPHABETIC MEANS NOT IN OUR ALPH VARIABLE, NOT
+        #THE LITERAL ALPHABET) SYMBOLS HAVE BEEN PROCESSED BECAUSE THOSE SYMBOLS ARE IGNORED (LIKE
+        #EXPLAINED ABOVE FOR ENCRYPT)
         nonAlph = 0
         plain = []
         key = cleanKey(key)
-        
+
+
+        #make array with the position number for each letter in the key
+        keyPositions = []
+        for val in key:
+                keyPositions.append(alph.index(val))
+
+        keyIndex = 0
+        for val in string:
+
+                if keyIndex == len(keyPositions):
+                        keyIndex = 0
+
+                #check if a non-alphabetic symbol is present
+                if(not (val in alph)):
+                        plain.append(val)
+                        #nonAlph += 1
+
+                else:
+                        myKeyPos = ((len(alph) + alph.index(val)) - keyPositions[keyIndex]) % len(alph)
+                        plain.append(alph[myKeyPos])
+                        keyIndex += 1
+                        print (val + " " + str(alph.index(val)))
+                
+
+        '''
         #decrypt one index of the inputted string at a time
         for i in range(len(string)):
                 
@@ -113,16 +145,21 @@ def decrypt(string, key):
                         #where the same compensation for non-alphabetic symbols is applied to the
                         #key, and 26 is added overall to ensure teh result of the subtraction will
                         #never be negative without impacting modulus
-                        index = ((26 + alph.index(string[i]) - alph.index(key[((i-nonAlph) % len(key))])) % 26)
+                        #index = ((26 + alph.index(string[i]) - alph.index(key[((i-nonAlph) % len(key))])) % 26)
 
                         #for uppercase letter, add 26 to go from lowercase's index to uppercase's
-                        if(string[i].isupper()):
-                                index += 26
+                        #if(string[i].isupper()):
+                                #index += 26
+
+
+                        
+
                                 
-                        plain.append(index)
+                        plain.append(index)'''
 
         #send resulting plaintext to stdout
-        print (newText(plain))
+        #print (newText(plain))
+        print plain
 
         
 #confirm proper usage of program
